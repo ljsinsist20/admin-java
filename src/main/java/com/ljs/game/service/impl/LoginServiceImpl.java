@@ -1,7 +1,7 @@
 package com.ljs.game.service.impl;
 
 import com.ljs.game.mapper.LoginMapper;
-import com.ljs.game.pojo.Admin;
+import com.ljs.game.pojo.entity.Admin;
 import com.ljs.game.service.LoginService;
 import org.springframework.stereotype.Service;
 

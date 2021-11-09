@@ -1,25 +1,25 @@
 package com.ljs.game.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.ljs.game.pojo.entity.Admin;
-import com.ljs.game.pojo.entity.Dorm;
+import com.ljs.game.pojo.entity.Teacher;
 import com.ljs.game.result.R;
-import com.ljs.game.service.AdminService;
+import com.ljs.game.service.TeacherService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
-@RequestMapping("/core/admin")
+@RequestMapping("/core/teacher")
 @CrossOrigin
-public class AdminController {
+public class TeacherController {
+
     @Resource
-    private AdminService adminService;
+    private TeacherService teacherService;
 
     @GetMapping("/list/{pageNum}/{pageSize}")
     private R list(@PathVariable("pageNum") Integer pageNum, @PathVariable("pageSize") Integer pageSize ) {
-        PageInfo pageInfo = adminService.list(pageNum, pageSize);
+        PageInfo pageInfo = teacherService.list(pageNum, pageSize);
         return R.ok().data("pageInfo", pageInfo);
     }
 }

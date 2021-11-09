@@ -1,9 +1,8 @@
 package com.ljs.game.mapper;
 
-import com.ljs.game.pojo.Admin;
+import com.ljs.game.pojo.entity.Admin;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
-import org.springframework.web.bind.annotation.Mapping;
 
 @Mapper
 public interface LoginMapper {
