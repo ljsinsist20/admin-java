@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.ljs.game.mapper.TeacherMapper;
 import com.ljs.game.pojo.entity.Teacher;
+import com.ljs.game.pojo.query.TeacherQuery;
 import com.ljs.game.service.TeacherService;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +18,9 @@ public class TeacherServiceImpl implements TeacherService {
     private TeacherMapper teacherMapper;
 
     @Override
-    public PageInfo list(Integer pageNum, Integer pageSize) {
+    public PageInfo list(Integer pageNum, Integer pageSize, TeacherQuery teacherQuery) {
         PageHelper.startPage(pageNum, pageSize);
-        List<Teacher> list = teacherMapper.list();
+        List<Teacher> list = teacherMapper.list(teacherQuery);
         PageInfo<Teacher> pageInfo = new PageInfo<>(list);
         return pageInfo;
     }

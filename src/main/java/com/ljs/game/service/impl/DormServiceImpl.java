@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.ljs.game.mapper.DormMapper;
 import com.ljs.game.pojo.entity.Dorm;
+import com.ljs.game.pojo.query.DormQuery;
 import com.ljs.game.service.DormService;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +18,9 @@ public class DormServiceImpl implements DormService {
     private DormMapper dormMapper;
 
     @Override
-    public PageInfo list(Integer pageNum, Integer pageSize) {
+    public PageInfo list(Integer pageNum, Integer pageSize, DormQuery dormQuery) {
         PageHelper.startPage(pageNum, pageSize);
-        List<Dorm> list = dormMapper.list();
+        List<Dorm> list = dormMapper.list(dormQuery);
         PageInfo<Dorm> pageInfo = new PageInfo<>(list);
         return pageInfo;
     }
