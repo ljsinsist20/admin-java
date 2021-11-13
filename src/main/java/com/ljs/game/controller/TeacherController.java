@@ -35,9 +35,9 @@ public class TeacherController {
         return R.error().message("删除失败");
     }
 
-    @GetMapping("/find")
+    @GetMapping("/findAll")
     private R findAll() {
         List<Teacher> list = teacherService.findAll();
-        return R.ok().data("list", list);
+        return R.ok().data("teacherNameArr", list);
     }
 }

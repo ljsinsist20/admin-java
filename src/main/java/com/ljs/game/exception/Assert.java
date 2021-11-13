@@ -1,5 +1,6 @@
 package com.ljs.game.exception;
 
+import com.github.pagehelper.util.StringUtil;
 import com.ljs.game.result.ResponseEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.ObjectUtils;
@@ -84,7 +85,7 @@ public class Assert {
      * @param responseEnum
      */
     public static void notEmpty(String s, ResponseEnum responseEnum) {
-        if (StringUtils.isEmpty(s)) {
+        if (StringUtil.isEmpty(s)) {
             log.info("is empty...............");
             throw new BusinessException(responseEnum);
         }

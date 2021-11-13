@@ -3,6 +3,7 @@ package com.ljs.game.mapper;
 import com.ljs.game.mapper.Provider.StudentProvider;
 import com.ljs.game.pojo.entity.Student;
 import com.ljs.game.pojo.query.StudentQuery;
+import com.ljs.game.pojo.vo.StudentVO;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -22,4 +23,8 @@ public interface StudentMapper {
 
     @Delete(" delete from student where id = #{id} ")
     int deleteById(@Param("id") Integer id);
+
+    @Insert(" INSERT INTO student(name, sex, phone, tid, did, cid) " +
+            " VALUES(#{name}, #{sex}, #{phone}, #{teacherName}, #{dormName}, #{className}) ")
+    int add(StudentVO studentVO);
 }

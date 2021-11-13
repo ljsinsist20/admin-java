@@ -19,7 +19,7 @@ public interface TeacherMapper {
     @Delete(" delete from teacher where id = #{id}  ")
     int deleteById(Integer id);
 
-    @Select(" SELECT id, NAME FROM teacher ")
+    @Select(" SELECT id, name FROM teacher ")
     List<Teacher> findAll();
 
 }

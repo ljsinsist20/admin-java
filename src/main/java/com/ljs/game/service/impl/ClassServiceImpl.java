@@ -30,4 +30,10 @@ public class ClassServiceImpl implements ClassService {
         int count = classMapper.deleteById(id);
         return count;
     }
+
+    @Override
+    public List<Class> findAll() {
+        List<Class> list = classMapper.findAll();
+        return list;
+    }
 }

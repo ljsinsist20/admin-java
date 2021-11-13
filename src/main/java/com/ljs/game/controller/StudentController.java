@@ -1,7 +1,9 @@
 package com.ljs.game.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.ljs.game.exception.Assert;
 import com.ljs.game.pojo.query.StudentQuery;
+import com.ljs.game.pojo.vo.StudentVO;
 import com.ljs.game.result.R;
 import com.ljs.game.service.StudentService;
 import org.springframework.web.bind.annotation.*;
@@ -42,5 +44,14 @@ public class StudentController {
             return R.ok().message("删除成功");
         }
         return R.error().message("删除失败");
+    }
+
+    @PostMapping("/add")
+    private R add(@RequestBody StudentVO studentVO) {
+        int count = studentService.add(studentVO);
+        if (count == 1) {
+            return R.ok().message("添加成功");
+        }
+        return R.error().message("添加失败");
     }
 }

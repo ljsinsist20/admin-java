@@ -39,6 +39,6 @@ public class DormController {
     @GetMapping("/findAll")
     private R findAll() {
         List<Dorm> list = dormService.findAll();
-        return R.ok().data("list", list);
+        return R.ok().data("dormNameArr", list);
     }
 }

@@ -9,7 +9,9 @@ spring:
   datasource: # mysql数据库连接
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://47.104.76.161:3306/game?serverTimezone=GMT%2B8&characterEncoding=utf-8
+    #阿里云数据库地址
+#    url: jdbc:mysql://47.104.76.161:3306/game?serverTimezone=GMT%2B8&characterEncoding=utf-8
+    url: jdbc:mysql://localhost:3306/game?serverTimezone=GMT%2B8&characterEncoding=utf-8
     username: root
     password: root
     hikari:
