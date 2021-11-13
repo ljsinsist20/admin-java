@@ -25,4 +25,10 @@ public class StudentServiceImpl implements StudentService {
         PageInfo<Student> pageInfo = new PageInfo<>(list);
         return pageInfo;
     }
+
+    @Override
+    public int deleteById(Integer id) {
+        int count = studentMapper.deleteById(id);
+        return count;
+    }
 }

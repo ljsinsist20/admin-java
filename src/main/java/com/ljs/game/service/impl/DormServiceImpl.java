@@ -24,4 +24,16 @@ public class DormServiceImpl implements DormService {
         PageInfo<Dorm> pageInfo = new PageInfo<>(list);
         return pageInfo;
     }
+
+    @Override
+    public int deleteById(Integer id) {
+        int count = dormMapper.deleteById(id);
+        return count;
+    }
+
+    @Override
+    public List<Dorm> findAll() {
+        List<Dorm> list = dormMapper.findAll();
+        return list;
+    }
 }
