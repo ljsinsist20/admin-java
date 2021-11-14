@@ -6,4 +6,6 @@ import lombok.Data;
 public class Dorm {
     private Integer id;
     private String name;
+
+    private Integer studentNum;
 }

@@ -3,6 +3,7 @@ package com.ljs.game.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.ljs.game.mapper.ClassMapper;
+import com.ljs.game.mapper.StudentMapper;
 import com.ljs.game.pojo.entity.Class;
 import com.ljs.game.pojo.query.ClassQuery;
 import com.ljs.game.service.ClassService;
@@ -17,10 +18,18 @@ public class ClassServiceImpl implements ClassService {
     @Resource
     private ClassMapper classMapper;
 
+    @Resource
+    private StudentMapper studentMapper;
+
     @Override
     public PageInfo list(Integer pageNum, Integer pageSize, ClassQuery classQuery) {
         PageHelper.startPage(pageNum, pageSize);
         List<Class> list = classMapper.list(classQuery);
+        //优化建议:使用数据库语句一次性查完
+        for (Class item : list) {
+            int studentNum = studentMapper.findByCid(item.getId());
+            item.setStudentNum(studentNum);
+        }
         PageInfo<Class> pageInfo = new PageInfo<>(list);
         return pageInfo;
     }

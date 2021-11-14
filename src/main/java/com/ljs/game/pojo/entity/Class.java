@@ -11,4 +11,7 @@ public class Class {
 
     private Integer deid;
     private Integer tid;
+
+    private Integer studentNum;
+
 }

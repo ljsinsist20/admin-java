@@ -3,6 +3,7 @@ package com.ljs.game.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.ljs.game.mapper.DormMapper;
+import com.ljs.game.mapper.StudentMapper;
 import com.ljs.game.pojo.entity.Dorm;
 import com.ljs.game.pojo.query.DormQuery;
 import com.ljs.game.service.DormService;
@@ -17,10 +18,17 @@ public class DormServiceImpl implements DormService {
     @Resource
     private DormMapper dormMapper;
 
+    @Resource
+    private StudentMapper studentMapper;
+
     @Override
     public PageInfo list(Integer pageNum, Integer pageSize, DormQuery dormQuery) {
         PageHelper.startPage(pageNum, pageSize);
         List<Dorm> list = dormMapper.list(dormQuery);
+        for (Dorm item : list) {
+            int dormNum = studentMapper.findByDid(item.getId());
+            item.setStudentNum(dormNum);
+        }
         PageInfo<Dorm> pageInfo = new PageInfo<>(list);
         return pageInfo;
     }

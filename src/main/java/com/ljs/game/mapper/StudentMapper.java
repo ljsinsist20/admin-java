@@ -27,4 +27,10 @@ public interface StudentMapper {
     @Insert(" INSERT INTO student(name, sex, phone, tid, did, cid) " +
             " VALUES(#{name}, #{sex}, #{phone}, #{teacherName}, #{dormName}, #{className}) ")
     int add(StudentVO studentVO);
+
+    @Select(" SELECT COUNT(*) FROM student WHERE cid = #{id} ")
+    int findByCid(@Param("id") Integer id);
+
+    @Select(" SELECT COUNT(*) FROM student WHERE did = #{id} ")
+    int findByDid(@Param("id") Integer id);
 }
