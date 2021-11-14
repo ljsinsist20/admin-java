@@ -1,35 +1,34 @@
-package com.ljs.game.controller;
+package com.ljs.game.controller.core;
 
 import com.github.pagehelper.PageInfo;
-import com.ljs.game.pojo.entity.Dorm;
-import com.ljs.game.pojo.query.DormQuery;
+import com.ljs.game.pojo.entity.Teacher;
+import com.ljs.game.pojo.query.TeacherQuery;
 import com.ljs.game.result.R;
-import com.ljs.game.service.DormService;
-import org.apache.ibatis.annotations.Delete;
+import com.ljs.game.service.TeacherService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
-@RequestMapping("/core/dorm")
+@RequestMapping("/core/teacher")
 @CrossOrigin
-public class DormController {
+public class TeacherController {
 
     @Resource
-    private DormService dormService;
+    private TeacherService teacherService;
 
     @GetMapping("/list/{pageNum}/{pageSize}")
     private R list(@PathVariable("pageNum") Integer pageNum,
                    @PathVariable("pageSize") Integer pageSize,
-                   DormQuery dormQuery) {
-        PageInfo pageInfo = dormService.list(pageNum, pageSize, dormQuery);
+                   TeacherQuery teacherQuery) {
+        PageInfo pageInfo = teacherService.list(pageNum, pageSize, teacherQuery);
         return R.ok().data("pageInfo", pageInfo);
     }
 
     @DeleteMapping("/delete/{id}")
     private R deleteById(@PathVariable("id") Integer id) {
-        int count = dormService.deleteById(id);
+        int count = teacherService.deleteById(id);
         if (count == 1) {
             return R.ok().message("删除成功");
         }
@@ -38,7 +37,7 @@ public class DormController {
 
     @GetMapping("/findAll")
     private R findAll() {
-        List<Dorm> list = dormService.findAll();
-        return R.ok().data("dormNameArr", list);
+        List<Teacher> list = teacherService.findAll();
+        return R.ok().data("teacherNameArr", list);
     }
 }

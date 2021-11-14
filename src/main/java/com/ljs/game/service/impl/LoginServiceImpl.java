@@ -1,5 +1,6 @@
 package com.ljs.game.service.impl;
 
+import cn.hutool.crypto.digest.MD5;
 import com.ljs.game.mapper.LoginMapper;
 import com.ljs.game.pojo.entity.Admin;
 import com.ljs.game.service.LoginService;
@@ -14,11 +15,8 @@ public class LoginServiceImpl implements LoginService {
     private LoginMapper loginMapper;
 
     @Override
-    public int login(String usrename, String password) {
-        Admin admin = loginMapper.find(usrename, password);
-        if (admin != null) {
-            return 1;
-        }
-        return 0;
+    public Admin login(String usrename, String password) {
+        Admin admin = loginMapper.find(usrename, MD5.create().digestHex(password));
+        return admin;
     }
 }

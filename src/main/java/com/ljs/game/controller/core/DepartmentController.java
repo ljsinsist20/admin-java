@@ -1,4 +1,4 @@
-package com.ljs.game.controller;
+package com.ljs.game.controller.core;
 
 import com.github.pagehelper.PageInfo;
 import com.ljs.game.pojo.query.DepartmentQuery;
