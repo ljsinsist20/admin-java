@@ -17,7 +17,7 @@ public class LoginController {
     private LoginService loginService;
 
     @PostMapping("/login")
-    private R login(@RequestBody Admin admin) {
+    public R login(@RequestBody Admin admin) {
         Admin adminFlag = loginService.login(admin.getUserName(), admin.getPassWord());
         if (adminFlag != null) {
             String token = JwtUtils.createToken(adminFlag.getId(), adminFlag.getUserName());
@@ -27,12 +27,12 @@ public class LoginController {
     }
 
     @GetMapping("/logout")
-    private R logout() {
+    public R logout() {
         return R.ok().code(20000).message("success");
     }
 
     @GetMapping("/query")
-    private R query(HttpServletRequest request) {
+    public R query(HttpServletRequest request) {
         String token = request.getHeader("X-Token");
         String userName = JwtUtils.getUserName(token);
         return R.ok().data("userName", userName);

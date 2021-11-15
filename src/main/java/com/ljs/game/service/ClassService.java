@@ -12,4 +12,7 @@ public interface ClassService {
     int deleteById(Integer id);
 
     List<Class> findAll();
+
+    int add(Class aClass);
+
 }

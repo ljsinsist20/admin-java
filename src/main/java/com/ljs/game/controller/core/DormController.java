@@ -20,7 +20,7 @@ public class DormController {
     private DormService dormService;
 
     @GetMapping("/list/{pageNum}/{pageSize}")
-    private R list(@PathVariable("pageNum") Integer pageNum,
+    public R list(@PathVariable("pageNum") Integer pageNum,
                    @PathVariable("pageSize") Integer pageSize,
                    DormQuery dormQuery) {
         PageInfo pageInfo = dormService.list(pageNum, pageSize, dormQuery);
@@ -28,7 +28,7 @@ public class DormController {
     }
 
     @DeleteMapping("/delete/{id}")
-    private R deleteById(@PathVariable("id") Integer id) {
+    public R deleteById(@PathVariable("id") Integer id) {
         int count = dormService.deleteById(id);
         if (count == 1) {
             return R.ok().message("删除成功");
@@ -37,7 +37,7 @@ public class DormController {
     }
 
     @GetMapping("/findAll")
-    private R findAll() {
+    public R findAll() {
         List<Dorm> list = dormService.findAll();
         return R.ok().data("dormNameArr", list);
     }

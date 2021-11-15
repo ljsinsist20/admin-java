@@ -36,6 +36,10 @@ public class ClassServiceImpl implements ClassService {
 
     @Override
     public int deleteById(Integer id) {
+        int num = studentMapper.findByCid(id);
+        if (num != 0) {
+            return 0;
+        }
         int count = classMapper.deleteById(id);
         return count;
     }
@@ -44,5 +48,11 @@ public class ClassServiceImpl implements ClassService {
     public List<Class> findAll() {
         List<Class> list = classMapper.findAll();
         return list;
+    }
+
+    @Override
+    public int add(Class aClass) {
+        int count = classMapper.add(aClass);
+        return count;
     }
 }

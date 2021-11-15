@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.ljs.game.mapper.DepartmentMapper;
 import com.ljs.game.pojo.entity.Department;
 import com.ljs.game.pojo.query.DepartmentQuery;
+import com.ljs.game.result.R;
 import com.ljs.game.service.DepartmentService;
 import org.springframework.stereotype.Service;
 
@@ -24,4 +25,12 @@ public class DepartmentServiceImpl implements DepartmentService {
         PageInfo<Department> pageInfo = new PageInfo<>(list);
         return pageInfo;
     }
+
+    @Override
+    public List<Department> findAll() {
+        List<Department> list = departmentMapper.findAll();
+        return list;
+    }
+
+
 }

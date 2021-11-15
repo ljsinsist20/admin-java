@@ -18,7 +18,7 @@ public class ClassController {
     private ClassService classService;
 
     @GetMapping("/list/{pageNum}/{pageSize}")
-    private R list(@PathVariable("pageNum") Integer pageNum,
+    public R list(@PathVariable("pageNum") Integer pageNum,
                    @PathVariable("pageSize") Integer pageSize,
                    ClassQuery classQuery) {
         PageInfo pageInfo = classService.list(pageNum, pageSize, classQuery);
@@ -26,17 +26,26 @@ public class ClassController {
     }
 
     @DeleteMapping("/delete/{id}")
-    private R deleteById(@PathVariable("id") Integer id) {
+    public R deleteById(@PathVariable("id") Integer id) {
         int count = classService.deleteById(id);
         if (count == 1) {
             return R.ok().message("删除成功");
         }
-        return R.error().message("删除失败");
+        return R.error().message("该班级下存在学生，无法删除");
     }
 
     @GetMapping("/findAll")
-    private R findAll() {
+    public R findAll() {
         List<Class> list = classService.findAll();
         return R.ok().data("classNameArr", list);
+    }
+
+    @PostMapping("add")
+    public R add(@RequestBody Class Class) {
+        int count = classService.add(Class);
+        if (count == 1) {
+            return R.ok().message("添加成功");
+        }
+        return R.error().message("添加失败");
     }
 }

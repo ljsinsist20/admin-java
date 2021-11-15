@@ -18,13 +18,13 @@ public class AdminController {
     private AdminService adminService;
 
     @GetMapping("/list/{pageNum}/{pageSize}")
-    private R list(@PathVariable("pageNum") Integer pageNum, @PathVariable("pageSize") Integer pageSize) {
+    public R list(@PathVariable("pageNum") Integer pageNum, @PathVariable("pageSize") Integer pageSize) {
         PageInfo pageInfo = adminService.list(pageNum, pageSize);
         return R.ok().data("pageInfo", pageInfo);
     }
 
     @PostMapping("/add")
-    private R add(@RequestBody Admin admin) {
+    public R add(@RequestBody Admin admin) {
         int count = adminService.add(admin);
         if (count == 1) {
             return R.ok().message("添加成功");
@@ -33,7 +33,7 @@ public class AdminController {
     }
 
     @DeleteMapping("delete/{id}")
-    private R delete(@PathVariable("id") Integer id) {
+    public R delete(@PathVariable("id") Integer id) {
         int count = adminService.delete(id);
         if (count == 1) {
             return R.ok().message("删除成功");

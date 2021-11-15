@@ -21,4 +21,7 @@ public interface ClassMapper {
 
     @Select(" select count(*) from class where tid = #{tid} ")
     int findByTid(@Param("tid") Integer tid);
+
+    @Insert("  ")
+    int add(Class aClass);
 }

@@ -3,10 +3,7 @@ package com.ljs.game.mapper;
 import com.ljs.game.mapper.Provider.TeacherProvider;
 import com.ljs.game.pojo.entity.Teacher;
 import com.ljs.game.pojo.query.TeacherQuery;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.SelectProvider;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -22,4 +19,9 @@ public interface TeacherMapper {
     @Select(" SELECT id, name FROM teacher ")
     List<Teacher> findAll();
 
+    @Insert(" INSERT INTO teacher(`name`, sex, phone) VALUES(#{name}, #{sex}, #{phone}) ")
+    int add(Teacher teacher);
+
+    @Update(" UPDATE teacher SET `name` = #{name}, sex = #{sex}, phone = #{phone} WHERE id = #{id} ")
+    int update(Teacher teacher);
 }

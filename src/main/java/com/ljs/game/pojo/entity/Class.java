@@ -8,6 +8,7 @@ public class Class {
     private String name;
 
     private String teacherName;
+    private String departmentName;
 
     private Integer deid;
     private Integer tid;

@@ -5,12 +5,16 @@ import com.ljs.game.pojo.query.ClassQuery;
 public class ClassProvider {
 
     public String list(ClassQuery classQuery) {
-        String sql = " select c.`id`, c.`name`, t.`name` AS teacher_name from class c, teacher t where 1 = 1";
+        String sql = " select c.`id`, c.`name`, t.`name` AS teacher_name, de.`name` AS department_name " +
+                " from class c, teacher t, department de " +
+                " where c.`tid` = t.`id` AND c.`deid` = de.`id` ";
         StringBuffer str = new StringBuffer(sql);
         if (classQuery.getName() != null) {
             str.append(" AND c.`name` like concat('%',#{name},'%')");
         }
-        str.append(" AND c.tid = t.id ");
+        if (classQuery.getTeacherName() != null) {
+            str.append(" AND t.`name` like concat('%',#{teacherName},'%')");
+        }
         return str.toString();
     }
 }

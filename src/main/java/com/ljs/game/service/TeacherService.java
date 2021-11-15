@@ -13,4 +13,7 @@ public interface TeacherService {
 
     List<Teacher> findAll();
 
+    int add(Teacher teacher);
+
+    int update(Integer id, Teacher teacher);
 }

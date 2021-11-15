@@ -25,7 +25,7 @@ public class StudentController {
      * @return
      */
     @GetMapping("/list/{pageNum}/{pageSize}")
-    private R list(@PathVariable("pageNum") Integer pageNum,
+    public R list(@PathVariable("pageNum") Integer pageNum,
                    @PathVariable("pageSize") Integer pageSize,
                    StudentQuery studentQuery) {
         PageInfo pageInfo = studentService.list(pageNum, pageSize, studentQuery);
@@ -38,7 +38,7 @@ public class StudentController {
      * @return
      */
     @DeleteMapping("/delete/{id}")
-    private R deleteById(@PathVariable("id") Integer id) {
+    public R deleteById(@PathVariable("id") Integer id) {
         int count = studentService.deleteById(id);
         if (count == 1) {
             return R.ok().message("删除成功");
@@ -47,7 +47,7 @@ public class StudentController {
     }
 
     @PostMapping("/add")
-    private R add(@RequestBody StudentVO studentVO) {
+    public R add(@RequestBody StudentVO studentVO) {
         int count = studentService.add(studentVO);
         if (count == 1) {
             return R.ok().message("添加成功");
@@ -56,7 +56,7 @@ public class StudentController {
     }
 
     @PutMapping("/update/{id}")
-    private R update(@PathVariable("id") Integer id, @RequestBody StudentVO studentVO) {
+    public R update(@PathVariable("id") Integer id, @RequestBody StudentVO studentVO) {
         int count = studentService.update(id, studentVO);
         if (count == 1) {
             return R.ok().message("更新成功");

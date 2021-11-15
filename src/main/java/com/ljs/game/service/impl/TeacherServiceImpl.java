@@ -44,4 +44,17 @@ public class TeacherServiceImpl implements TeacherService {
         List<Teacher> list = teacherMapper.findAll();
         return list;
     }
+
+    @Override
+    public int add(Teacher teacher) {
+        int count = teacherMapper.add(teacher);
+        return count;
+    }
+
+    @Override
+    public int update(Integer id, Teacher teacher) {
+        teacher.setId(id);
+        int count = teacherMapper.update(teacher);
+        return count;
+    }
 }

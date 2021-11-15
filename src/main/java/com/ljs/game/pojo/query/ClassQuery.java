@@ -5,4 +5,5 @@ import lombok.Data;
 @Data
 public class ClassQuery {
     private String name;
+    private String teacherName;
 }
