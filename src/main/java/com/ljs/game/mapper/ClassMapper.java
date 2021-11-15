@@ -3,10 +3,7 @@ package com.ljs.game.mapper;
 import com.ljs.game.mapper.Provider.ClassProvider;
 import com.ljs.game.pojo.entity.Class;
 import com.ljs.game.pojo.query.ClassQuery;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.SelectProvider;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -22,4 +19,6 @@ public interface ClassMapper {
     @Select(" select id, name from class ")
     List<Class> findAll();
 
+    @Select(" select count(*) from class where tid = #{tid} ")
+    int findByTid(@Param("tid") Integer tid);
 }

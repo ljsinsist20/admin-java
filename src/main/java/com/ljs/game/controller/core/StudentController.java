@@ -54,4 +54,13 @@ public class StudentController {
         }
         return R.error().message("添加失败");
     }
+
+    @PutMapping("/update/{id}")
+    private R update(@PathVariable("id") Integer id, @RequestBody StudentVO studentVO) {
+        int count = studentService.update(id, studentVO);
+        if (count == 1) {
+            return R.ok().message("更新成功");
+        }
+        return R.error().message("更新失败");
+    }
 }

@@ -2,6 +2,7 @@ package com.ljs.game.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.ljs.game.mapper.ClassMapper;
 import com.ljs.game.mapper.TeacherMapper;
 import com.ljs.game.pojo.entity.Teacher;
 import com.ljs.game.pojo.query.TeacherQuery;
@@ -17,6 +18,9 @@ public class TeacherServiceImpl implements TeacherService {
     @Resource
     private TeacherMapper teacherMapper;
 
+    @Resource
+    private ClassMapper classMapper;
+
     @Override
     public PageInfo list(Integer pageNum, Integer pageSize, TeacherQuery teacherQuery) {
         PageHelper.startPage(pageNum, pageSize);
@@ -26,8 +30,12 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public int deleteById(Integer id) {
-        int count = teacherMapper.deleteById(id);
+    public int deleteById(Integer tid) {
+        int num = classMapper.findByTid(tid);
+        if (num != 0) {
+            return 0;
+        }
+        int count = teacherMapper.deleteById(tid);
         return count;
     }
 

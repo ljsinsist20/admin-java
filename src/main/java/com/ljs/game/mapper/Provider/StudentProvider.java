@@ -1,13 +1,14 @@
 package com.ljs.game.mapper.Provider;
 import com.ljs.game.pojo.query.StudentQuery;
+import com.ljs.game.pojo.vo.StudentVO;
 
 public class StudentProvider {
 
     public String list(StudentQuery studentQuery){
-        String sql =   " SELECT s.`id`, s.`name`, s.`sex`, s.`phone`, t.`name` AS teacher_name, d.`name` AS dorm_name, " +
+        String sql =   " SELECT s.`id`, c.`id` AS cid, d.`id` AS did, s.`name`, s.`sex`, s.`phone`, t.`name` AS teacher_name, d.`name` AS dorm_name, " +
             " c.`name` AS class_name, de.`name` AS department_name " +
             " FROM student s, teacher t, dorm d, class c, department de " +
-            " WHERE s.`tid` = t.`id` AND s.`did` = d.`id` AND s.`cid` = c.`id` AND c.`id` = de.`id` ";
+            " WHERE c.`tid` = t.`id` AND s.`did` = d.`id` AND s.`cid` = c.`id` AND c.`id` = de.`id` ";
         StringBuffer str = new StringBuffer(sql);
         if (studentQuery.getName() != null) {
             str.append(" AND s.`name` like concat('%',#{studentQuery.name},'%') ");

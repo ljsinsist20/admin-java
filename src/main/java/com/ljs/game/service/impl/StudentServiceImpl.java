@@ -38,4 +38,11 @@ public class StudentServiceImpl implements StudentService {
         int count = studentMapper.add(studentVO);
         return count;
     }
+
+    @Override
+    public int update(Integer id, StudentVO studentVO) {
+        studentVO.setId(id);
+        int count = studentMapper.update(studentVO);
+        return count;
+    }
 }

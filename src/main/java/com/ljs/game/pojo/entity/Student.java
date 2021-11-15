@@ -8,7 +8,6 @@ public class Student {
     private String name;
     private Integer sex;
     private String phone;
-    private Integer tid;
     private Integer did;
     private Integer cid;
     //数据库不存在

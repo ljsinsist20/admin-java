@@ -11,4 +11,7 @@ public interface StudentService {
     int deleteById(Integer id);
 
     int add(StudentVO studentVO);
+
+    int update(Integer id, StudentVO studentVO);
+
 }

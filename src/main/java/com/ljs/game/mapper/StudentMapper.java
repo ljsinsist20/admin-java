@@ -24,8 +24,8 @@ public interface StudentMapper {
     @Delete(" delete from student where id = #{id} ")
     int deleteById(@Param("id") Integer id);
 
-    @Insert(" INSERT INTO student(name, sex, phone, tid, did, cid) " +
-            " VALUES(#{name}, #{sex}, #{phone}, #{teacherName}, #{dormName}, #{className}) ")
+    @Insert(" INSERT INTO student(name, sex, phone, did, cid) " +
+            " VALUES(#{name}, #{sex}, #{phone}, #{did}, #{cid}) ")
     int add(StudentVO studentVO);
 
     @Select(" SELECT COUNT(*) FROM student WHERE cid = #{id} ")
@@ -33,4 +33,10 @@ public interface StudentMapper {
 
     @Select(" SELECT COUNT(*) FROM student WHERE did = #{id} ")
     int findByDid(@Param("id") Integer id);
+
+    @Update(" UPDATE student SET `name` = #{name}, sex = #{sex}, phone = #{phone}, " +
+            " did = #{did}, cid = #{cid}" +
+            " WHERE id = #{id} ")
+    int update(StudentVO studentVO);
+
 }
