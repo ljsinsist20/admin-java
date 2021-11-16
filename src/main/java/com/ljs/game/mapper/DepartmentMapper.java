@@ -3,6 +3,7 @@ package com.ljs.game.mapper;
 import com.ljs.game.mapper.Provider.DepartmentProvider;
 import com.ljs.game.pojo.entity.Department;
 import com.ljs.game.pojo.query.DepartmentQuery;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectProvider;
@@ -17,4 +18,10 @@ public interface DepartmentMapper {
 
     @Select(" SELECT id, name FROM department ")
     List<Department> findAll();
+
+    @Select(" delete from department  where id = #{id} ")
+    int delete(Integer id);
+
+    @Insert(" INSERT INTO department(`name`) VALUES(#{name}) ")
+    int add(Department department);
 }

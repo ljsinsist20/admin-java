@@ -11,4 +11,8 @@ public interface DepartmentService {
 
     List<Department> findAll();
 
+    int delete(Integer id);
+
+    int add(Department department);
+
 }

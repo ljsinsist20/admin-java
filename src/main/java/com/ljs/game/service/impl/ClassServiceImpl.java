@@ -55,4 +55,11 @@ public class ClassServiceImpl implements ClassService {
         int count = classMapper.add(aClass);
         return count;
     }
+
+    @Override
+    public int update(Integer id, Class aClass) {
+        aClass.setId(id);
+        int count = classMapper.update(aClass);
+        return count;
+    }
 }

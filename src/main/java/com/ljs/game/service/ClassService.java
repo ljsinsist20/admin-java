@@ -15,4 +15,5 @@ public interface ClassService {
 
     int add(Class aClass);
 
+    int update(Integer id, Class aClass);
 }

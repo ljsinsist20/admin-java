@@ -22,6 +22,12 @@ public interface ClassMapper {
     @Select(" select count(*) from class where tid = #{tid} ")
     int findByTid(@Param("tid") Integer tid);
 
-    @Insert("  ")
+    @Insert(" INSERT INTO class(`name`, deid, tid) VALUES(#{name}, #{deid}, #{tid}) ")
     int add(Class aClass);
+
+    @Update(" UPDATE class SET `name` = #{name}, deid = #{deid}, tid = #{tid} WHERE id = #{id} ")
+    int update(Class aClass);
+
+    @Select(" select count(*) from class where deid = #{deid}  ")
+    int findByDeid(@Param("deid") Integer deid);
 }

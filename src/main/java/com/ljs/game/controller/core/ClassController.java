@@ -19,8 +19,8 @@ public class ClassController {
 
     @GetMapping("/list/{pageNum}/{pageSize}")
     public R list(@PathVariable("pageNum") Integer pageNum,
-                   @PathVariable("pageSize") Integer pageSize,
-                   ClassQuery classQuery) {
+                  @PathVariable("pageSize") Integer pageSize,
+                  ClassQuery classQuery) {
         PageInfo pageInfo = classService.list(pageNum, pageSize, classQuery);
         return R.ok().data("pageInfo", pageInfo);
     }
@@ -47,5 +47,14 @@ public class ClassController {
             return R.ok().message("添加成功");
         }
         return R.error().message("添加失败");
+    }
+
+    @PutMapping("/update/{id}")
+    public R update(@PathVariable("id") Integer id, @RequestBody Class Class) {
+        int count = classService.update(id, Class);
+        if (count == 1) {
+            return R.ok().message("更新成功");
+        }
+        return R.error().message("更新失败");
     }
 }

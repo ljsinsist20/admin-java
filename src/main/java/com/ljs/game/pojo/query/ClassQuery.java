@@ -6,4 +6,5 @@ import lombok.Data;
 public class ClassQuery {
     private String name;
     private String teacherName;
+    private String departmentName;
 }
