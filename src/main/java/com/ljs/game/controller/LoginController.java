@@ -4,6 +4,7 @@ import com.ljs.game.pojo.entity.Admin;
 import com.ljs.game.result.R;
 import com.ljs.game.service.LoginService;
 import com.ljs.game.utils.JwtUtils;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -31,9 +32,9 @@ public class LoginController {
         return R.ok().code(20000).message("success");
     }
 
+
     @GetMapping("/query")
-    public R query(HttpServletRequest request) {
-        String token = request.getHeader("X-Token");
+    public R query(@RequestParam("token") String token) {
         String userName = JwtUtils.getUserName(token);
         return R.ok().data("userName", userName);
     }
