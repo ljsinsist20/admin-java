@@ -5,9 +5,7 @@ import com.ljs.game.pojo.entity.Dorm;
 import com.ljs.game.pojo.query.DormQuery;
 import com.ljs.game.result.R;
 import com.ljs.game.service.DormService;
-import org.apache.ibatis.annotations.Delete;
 import org.springframework.web.bind.annotation.*;
-
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -21,8 +19,8 @@ public class DormController {
 
     @GetMapping("/list/{pageNum}/{pageSize}")
     public R list(@PathVariable("pageNum") Integer pageNum,
-                   @PathVariable("pageSize") Integer pageSize,
-                   DormQuery dormQuery) {
+                  @PathVariable("pageSize") Integer pageSize,
+                  DormQuery dormQuery) {
         PageInfo pageInfo = dormService.list(pageNum, pageSize, dormQuery);
         return R.ok().data("pageInfo", pageInfo);
     }
@@ -33,12 +31,30 @@ public class DormController {
         if (count == 1) {
             return R.ok().message("删除成功");
         }
-        return R.error().message("删除失败");
+        return R.error().message("该宿舍下存在学生，无法删除");
     }
 
     @GetMapping("/findAll")
     public R findAll() {
         List<Dorm> list = dormService.findAll();
         return R.ok().data("dormNameArr", list);
+    }
+
+    @PostMapping("/add")
+    public R add(@RequestBody Dorm dorm) {
+        int count = dormService.add(dorm);
+        if (count == 1) {
+            return R.ok().message("添加成功");
+        }
+        return R.error().message("添加失败");
+    }
+
+    @PutMapping("/update/{id}")
+    public R update(@PathVariable("id") Integer id, @RequestBody Dorm dorm) {
+        int count = dormService.update(id, dorm);
+        if (count == 1) {
+            return R.ok().message("更新成功");
+        }
+        return R.error().message("更新失败");
     }
 }

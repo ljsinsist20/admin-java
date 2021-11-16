@@ -21,6 +21,7 @@ public class DormServiceImpl implements DormService {
     @Resource
     private StudentMapper studentMapper;
 
+
     @Override
     public PageInfo list(Integer pageNum, Integer pageSize, DormQuery dormQuery) {
         PageHelper.startPage(pageNum, pageSize);
@@ -35,7 +36,11 @@ public class DormServiceImpl implements DormService {
 
     @Override
     public int deleteById(Integer id) {
-        int count = dormMapper.deleteById(id);
+        int num = studentMapper.findByDid(id);
+        if (num != 0) {
+            return 0;
+        }
+        int count = dormMapper.delete(id);
         return count;
     }
 
@@ -43,5 +48,18 @@ public class DormServiceImpl implements DormService {
     public List<Dorm> findAll() {
         List<Dorm> list = dormMapper.findAll();
         return list;
+    }
+
+    @Override
+    public int add(Dorm dorm) {
+        int count = dormMapper.add(dorm);
+        return count;
+    }
+
+    @Override
+    public int update(Integer id, Dorm dorm) {
+        dorm.setId(id);
+        int count = dormMapper.update(dorm);
+        return count;
     }
 }

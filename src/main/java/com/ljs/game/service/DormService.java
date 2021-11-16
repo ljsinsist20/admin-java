@@ -14,4 +14,7 @@ public interface DormService {
     List<Dorm> findAll();
 
 
+    int add(Dorm dorm);
+
+    int update(Integer id, Dorm dorm);
 }

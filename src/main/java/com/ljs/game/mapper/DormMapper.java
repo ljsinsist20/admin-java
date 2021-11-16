@@ -3,10 +3,7 @@ package com.ljs.game.mapper;
 import com.ljs.game.mapper.Provider.DormProvider;
 import com.ljs.game.pojo.entity.Dorm;
 import com.ljs.game.pojo.query.DormQuery;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.SelectProvider;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -21,5 +18,14 @@ public interface DormMapper {
 
     @Select(" SELECT id, NAME FROM dorm ")
     List<Dorm> findAll();
+
+    @Delete(" delete from dorm  where id = #{id} ")
+    int delete(Integer id);
+
+    @Insert(" INSERT INTO dorm(`name`) VALUES(#{name}) ")
+    int add(Dorm dorm);
+
+    @Update(" update dorm set `name` = #{name} where id = #{id} ")
+    int update(Dorm dorm);
 
 }

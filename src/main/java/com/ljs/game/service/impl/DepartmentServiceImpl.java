@@ -6,8 +6,6 @@ import com.ljs.game.mapper.ClassMapper;
 import com.ljs.game.mapper.DepartmentMapper;
 import com.ljs.game.pojo.entity.Department;
 import com.ljs.game.pojo.query.DepartmentQuery;
-import com.ljs.game.result.R;
-import com.ljs.game.service.ClassService;
 import com.ljs.game.service.DepartmentService;
 import org.springframework.stereotype.Service;
 
@@ -50,6 +48,13 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public int add(Department department) {
         int count = departmentMapper.add(department);
+        return count;
+    }
+
+    @Override
+    public int update(Integer id, Department department) {
+        department.setId(id);
+        int count = departmentMapper.update(department);
         return count;
     }
 

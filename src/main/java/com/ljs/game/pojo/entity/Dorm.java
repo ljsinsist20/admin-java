@@ -8,4 +8,5 @@ public class Dorm {
     private String name;
 
     private Integer studentNum;
+
 }
