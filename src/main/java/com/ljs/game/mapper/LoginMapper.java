@@ -10,4 +10,8 @@ public interface LoginMapper {
 
     @Select(" select * from admin where user_name = #{username} and pass_word = #{password}")
     Admin find(@Param("username") String username, @Param("password") String password);
+
+    @Select(" select role from admin where user_name = #{userName} ")
+    String findRolo(@Param("userName") String userName);
+
 }

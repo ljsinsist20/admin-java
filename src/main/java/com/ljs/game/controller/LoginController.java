@@ -8,6 +8,8 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/admin")
@@ -35,7 +37,11 @@ public class LoginController {
 
     @GetMapping("/query")
     public R query(@RequestParam("token") String token) {
+        Map<String, String> userAll = new HashMap<>();
         String userName = JwtUtils.getUserName(token);
-        return R.ok().data("userName", userName);
+        String role = loginService.findRole(userName);
+        userAll.put("userName", userName);
+        userAll.put("roles", role);
+        return R.ok().data("userAll", userAll);
     }
 }

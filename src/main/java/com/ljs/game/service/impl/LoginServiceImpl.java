@@ -19,4 +19,10 @@ public class LoginServiceImpl implements LoginService {
         Admin admin = loginMapper.find(usrename, MD5.create().digestHex(password));
         return admin;
     }
+
+    @Override
+    public String findRole(String userName) {
+        String role = loginMapper.findRolo(userName);
+        return role;
+    }
 }
