@@ -4,6 +4,8 @@ import com.github.pagehelper.PageInfo;
 import com.ljs.game.pojo.query.StudentQuery;
 import com.ljs.game.pojo.vo.StudentVO;
 
+import java.util.List;
+
 
 public interface StudentService {
     PageInfo list(Integer pageNum, Integer pageSize, StudentQuery studentQuery);
@@ -14,4 +16,5 @@ public interface StudentService {
 
     int update(Integer id, StudentVO studentVO);
 
+    List listByDown(Integer pageNum, Integer pageSize, StudentQuery studentQuery);
 }

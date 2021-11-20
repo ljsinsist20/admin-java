@@ -14,6 +14,7 @@ public class InterceptorConfig extends WebMvcConfigurationSupport {
         registry.addInterceptor(new MyInterceptor())
                 .addPathPatterns("/**")//拦截所有的路径
                 .excludePathPatterns("/admin/login");
+//        .excludePathPatterns("/core/student/down")
 //        super.addInterceptors(registry);
     }
 }

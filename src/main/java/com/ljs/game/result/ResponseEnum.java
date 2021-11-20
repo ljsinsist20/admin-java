@@ -15,7 +15,9 @@ public enum ResponseEnum {
     BAD_SQL_GRAMMAR_ERROR(-101, "sql语法错误"),
     SERVLET_ERROR(-102, "servlet请求异常"), //-2xx 参数校验
 
-    LOGIN_AUTH_ERROR(-211, "未登录");
+    LOGIN_AUTH_ERROR(-211, "未登录"),
+
+    EXPORT_DATA_ERROR(-212, "excel导出失败");
 
 
     private Integer code;

@@ -23,6 +23,12 @@ spring:
       maximum-pool-size: 10
       minimum-idle: 5
       read-only: false
+  devtools:
+    restart:
+      # 设置热部署生效
+      enabled: true
+      # 设置重启的目录
+      additional-paths: src/main/java
 #  redis:
 #    #host: 192.168.100.100
 #    host: 47.104.76.161

@@ -1,13 +1,25 @@
 package com.ljs.game.controller.core;
 
+import com.alibaba.excel.EasyExcel;
 import com.github.pagehelper.PageInfo;
 import com.ljs.game.exception.Assert;
+import com.ljs.game.exception.BusinessException;
+import com.ljs.game.pojo.dto.ExcelStudentDTO;
+import com.ljs.game.pojo.entity.Student;
 import com.ljs.game.pojo.query.StudentQuery;
 import com.ljs.game.pojo.vo.StudentVO;
 import com.ljs.game.result.R;
+import com.ljs.game.result.ResponseEnum;
 import com.ljs.game.service.StudentService;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 @RestController
 @RequestMapping("/core/student")
@@ -30,6 +42,28 @@ public class StudentController {
                    StudentQuery studentQuery) {
         PageInfo pageInfo = studentService.list(pageNum, pageSize, studentQuery);
         return R.ok().data("pageInfo", pageInfo);
+    }
+
+    /**
+     * 导出excel
+     * @param response
+     */
+    @GetMapping("/down/{pageNum}/{pageSize}")
+    public void down(@PathVariable("pageNum") Integer pageNum,
+                     @PathVariable("pageSize") Integer pageSize,
+                     StudentQuery studentQuery,
+                     HttpServletResponse response) {
+        try {
+            response.setContentType("application/vnd.ms-excel");
+            response.setCharacterEncoding("utf-8");
+            String fileName = new String("导出excel.xlsx".getBytes(), StandardCharsets.ISO_8859_1);
+            response.setHeader("Content-disposition", "attachment;filename=" + fileName );
+            EasyExcel.write(response.getOutputStream(), ExcelStudentDTO.class)
+                    .sheet("学生信息")
+                    .doWrite(studentService.listByDown(pageNum,pageSize, studentQuery));
+        } catch (Exception e) {
+            throw new BusinessException(ResponseEnum.EXPORT_DATA_ERROR, e);
+        }
     }
 
     /**
