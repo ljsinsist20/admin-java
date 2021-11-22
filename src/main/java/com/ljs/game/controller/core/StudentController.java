@@ -2,6 +2,7 @@ package com.ljs.game.controller.core;
 
 import com.alibaba.excel.EasyExcel;
 import com.github.pagehelper.PageInfo;
+import com.ljs.game.aop.OperLog;
 import com.ljs.game.exception.BusinessException;
 import com.ljs.game.pojo.dto.ExcelStudentDTO;
 import com.ljs.game.pojo.query.StudentQuery;
@@ -65,6 +66,7 @@ public class StudentController {
      * @return
      */
     @DeleteMapping("/delete/{id}")
+    @OperLog(operModul = "学生列表", operType = "删除")
     public R deleteById(@PathVariable("id") Integer id) {
         int count = studentService.deleteById(id);
         if (count == 1) {
