@@ -1,6 +1,7 @@
 package com.ljs.game.controller.core;
 
 import com.github.pagehelper.PageInfo;
+import com.ljs.game.aop.OperLog;
 import com.ljs.game.pojo.entity.Class;
 import com.ljs.game.pojo.query.ClassQuery;
 import com.ljs.game.result.R;
@@ -26,6 +27,7 @@ public class ClassController {
     }
 
     @DeleteMapping("/delete/{id}")
+    @OperLog(operModul = "班级列表", operType = "删除")
     public R deleteById(@PathVariable("id") Integer id) {
         int count = classService.deleteById(id);
         if (count == 1) {
@@ -41,6 +43,7 @@ public class ClassController {
     }
 
     @PostMapping("add")
+    @OperLog(operModul = "班级列表", operType = "增加")
     public R add(@RequestBody Class Class) {
         int count = classService.add(Class);
         if (count == 1) {
@@ -50,6 +53,7 @@ public class ClassController {
     }
 
     @PutMapping("/update/{id}")
+    @OperLog(operModul = "班级列表", operType = "更新")
     public R update(@PathVariable("id") Integer id, @RequestBody Class Class) {
         int count = classService.update(id, Class);
         if (count == 1) {

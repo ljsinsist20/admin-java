@@ -76,6 +76,7 @@ public class StudentController {
     }
 
     @PostMapping("/add")
+    @OperLog(operModul = "学生列表", operType = "增加")
     public R add(@RequestBody StudentVO studentVO) {
         int count = studentService.add(studentVO);
         if (count == 1) {
@@ -85,6 +86,7 @@ public class StudentController {
     }
 
     @PutMapping("/update/{id}")
+    @OperLog(operModul = "学生列表", operType = "更新")
     public R update(@PathVariable("id") Integer id, @RequestBody StudentVO studentVO) {
         int count = studentService.update(id, studentVO);
         if (count == 1) {

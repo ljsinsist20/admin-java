@@ -1,6 +1,7 @@
 package com.ljs.game.controller.core;
 
 import com.github.pagehelper.PageInfo;
+import com.ljs.game.aop.OperLog;
 import com.ljs.game.pojo.entity.Admin;
 import com.ljs.game.result.R;
 import com.ljs.game.service.AdminService;
@@ -21,6 +22,7 @@ public class AdminController {
     }
 
     @PostMapping("/add")
+    @OperLog(operModul = "管理员列表", operType = "增加")
     public R add(@RequestBody Admin admin) {
         int count = adminService.add(admin);
         if (count == 1) {
@@ -30,6 +32,7 @@ public class AdminController {
     }
 
     @DeleteMapping("delete/{id}/{role}")
+    @OperLog(operModul = "管理员列表", operType = "删除")
     public R delete(@PathVariable("id") Integer id, @PathVariable("role") String role) {
         int count = adminService.delete(id, role);
         if (count == 1) {

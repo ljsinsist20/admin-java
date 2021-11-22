@@ -1,6 +1,7 @@
 package com.ljs.game.controller.core;
 
 import com.github.pagehelper.PageInfo;
+import com.ljs.game.aop.OperLog;
 import com.ljs.game.pojo.entity.Dorm;
 import com.ljs.game.pojo.query.DormQuery;
 import com.ljs.game.result.R;
@@ -26,6 +27,7 @@ public class DormController {
     }
 
     @DeleteMapping("/delete/{id}")
+    @OperLog(operModul = "宿舍列表", operType = "删除")
     public R deleteById(@PathVariable("id") Integer id) {
         int count = dormService.deleteById(id);
         if (count == 1) {
@@ -41,6 +43,7 @@ public class DormController {
     }
 
     @PostMapping("/add")
+    @OperLog(operModul = "宿舍列表", operType = "增加")
     public R add(@RequestBody Dorm dorm) {
         int count = dormService.add(dorm);
         if (count == 1) {
@@ -50,6 +53,7 @@ public class DormController {
     }
 
     @PutMapping("/update/{id}")
+    @OperLog(operModul = "宿舍列表", operType = "更新")
     public R update(@PathVariable("id") Integer id, @RequestBody Dorm dorm) {
         int count = dormService.update(id, dorm);
         if (count == 1) {

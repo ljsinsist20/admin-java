@@ -2,6 +2,7 @@ package com.ljs.game.controller.core;
 
 import com.alibaba.excel.EasyExcel;
 import com.github.pagehelper.PageInfo;
+import com.ljs.game.aop.OperLog;
 import com.ljs.game.exception.BusinessException;
 import com.ljs.game.pojo.dto.ExcelTeacherDTO;
 import com.ljs.game.pojo.entity.Teacher;
@@ -55,6 +56,7 @@ public class TeacherController {
     }
 
     @DeleteMapping("/delete/{id}")
+    @OperLog(operModul = "辅导员列表", operType = "删除")
     public R deleteById(@PathVariable("id") Integer id) {
         int count = teacherService.deleteById(id);
         if (count == 1) {
@@ -70,6 +72,7 @@ public class TeacherController {
     }
 
     @PostMapping("/add")
+    @OperLog(operModul = "辅导员列表", operType = "增加")
     public R add(@RequestBody Teacher teacher) {
         int count = teacherService.add(teacher);
         if (count == 1) {
@@ -79,6 +82,7 @@ public class TeacherController {
     }
 
     @PutMapping("/update/{id}")
+    @OperLog(operModul = "辅导员列表", operType = "更新")
     public R update(@PathVariable("id") Integer id, @RequestBody Teacher teacher) {
         int count = teacherService.update(id, teacher);
         if (count == 1) {

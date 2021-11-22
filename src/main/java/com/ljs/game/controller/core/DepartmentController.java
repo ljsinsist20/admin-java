@@ -1,6 +1,7 @@
 package com.ljs.game.controller.core;
 
 import com.github.pagehelper.PageInfo;
+import com.ljs.game.aop.OperLog;
 import com.ljs.game.pojo.entity.Department;
 import com.ljs.game.pojo.query.DepartmentQuery;
 import com.ljs.game.result.R;
@@ -33,6 +34,7 @@ public class DepartmentController {
     }
 
     @DeleteMapping("/delete/{id}")
+    @OperLog(operModul = "系列表", operType = "删除")
     public R delete(@PathVariable("id") Integer id) {
         int count = departmentService.delete(id);
         if (count == 1) {
@@ -42,6 +44,7 @@ public class DepartmentController {
     }
 
     @PostMapping("/add")
+    @OperLog(operModul = "系列表", operType = "增加")
     public R add(@RequestBody Department department) {
         int count = departmentService.add(department);
         if (count == 1) {
@@ -51,6 +54,7 @@ public class DepartmentController {
     }
 
     @PutMapping("/update/{id}")
+    @OperLog(operModul = "系列表", operType = "更新")
     public R update(@PathVariable("id") Integer id, @RequestBody Department department) {
         int count = departmentService.update(id, department);
         if (count == 1) {
