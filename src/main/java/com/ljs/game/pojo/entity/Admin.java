@@ -10,4 +10,6 @@ public class Admin {
 
     private String passWord;
 
+    private String role;
+
 }

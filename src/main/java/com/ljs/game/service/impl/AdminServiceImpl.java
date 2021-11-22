@@ -7,7 +7,6 @@ import com.ljs.game.mapper.AdminMapper;
 import com.ljs.game.pojo.entity.Admin;
 import com.ljs.game.service.AdminService;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.Resource;
 import java.util.List;
 

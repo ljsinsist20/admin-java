@@ -7,7 +7,7 @@ import java.util.List;
 
 @Mapper
 public interface AdminMapper {
-    @Select(" SELECT id, user_name, pass_word FROM admin ")
+    @Select(" SELECT id, user_name, pass_word, role FROM admin ")
     List<Admin> list();
 
     @Insert(" INSERT INTO admin(user_name, pass_word) VALUES(#{userName}, #{passWord}) ")
