@@ -3,7 +3,6 @@ package com.ljs.game.controller.core;
 import com.github.pagehelper.PageInfo;
 import com.ljs.game.pojo.entity.Department;
 import com.ljs.game.pojo.query.DepartmentQuery;
-import com.ljs.game.pojo.query.DormQuery;
 import com.ljs.game.result.R;
 import com.ljs.game.service.DepartmentService;
 import org.springframework.web.bind.annotation.*;

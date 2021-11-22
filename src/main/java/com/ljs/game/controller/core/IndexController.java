@@ -1,6 +1,5 @@
 package com.ljs.game.controller.core;
 
-
 import com.ljs.game.pojo.vo.SexVO;
 import com.ljs.game.result.R;
 import com.ljs.game.service.IndexService;

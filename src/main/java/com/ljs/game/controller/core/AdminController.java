@@ -2,7 +2,6 @@ package com.ljs.game.controller.core;
 
 import com.github.pagehelper.PageInfo;
 import com.ljs.game.pojo.entity.Admin;
-import com.ljs.game.pojo.entity.Dorm;
 import com.ljs.game.result.R;
 import com.ljs.game.service.AdminService;
 import org.springframework.web.bind.annotation.*;
