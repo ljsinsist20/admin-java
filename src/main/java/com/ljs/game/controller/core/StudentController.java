@@ -2,10 +2,8 @@ package com.ljs.game.controller.core;
 
 import com.alibaba.excel.EasyExcel;
 import com.github.pagehelper.PageInfo;
-import com.ljs.game.exception.Assert;
 import com.ljs.game.exception.BusinessException;
 import com.ljs.game.pojo.dto.ExcelStudentDTO;
-import com.ljs.game.pojo.entity.Student;
 import com.ljs.game.pojo.query.StudentQuery;
 import com.ljs.game.pojo.vo.StudentVO;
 import com.ljs.game.result.R;
@@ -13,13 +11,8 @@ import com.ljs.game.result.ResponseEnum;
 import com.ljs.game.service.StudentService;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.util.List;
 
 @RestController
 @RequestMapping("/core/student")

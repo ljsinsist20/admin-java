@@ -32,11 +32,14 @@ public class AdminController {
         return R.error().message("添加失败");
     }
 
-    @DeleteMapping("delete/{id}")
-    public R delete(@PathVariable("id") Integer id) {
-        int count = adminService.delete(id);
+    @DeleteMapping("delete/{id}/{role}")
+    public R delete(@PathVariable("id") Integer id, @PathVariable("role") String role) {
+        int count = adminService.delete(id, role);
         if (count == 1) {
             return R.ok().message("删除成功");
+        }
+        if (count == 2) {
+            return R.error().message("只剩一个[超级管理员]用户无法删除");
         }
         return R.error().message("删除失败");
     }

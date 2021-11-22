@@ -16,4 +16,7 @@ public interface TeacherService {
     int add(Teacher teacher);
 
     int update(Integer id, Teacher teacher);
+
+    List listByDown(Integer pageNum, Integer pageSize, TeacherQuery teacherQuery);
+
 }

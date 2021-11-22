@@ -4,12 +4,17 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.ljs.game.mapper.ClassMapper;
 import com.ljs.game.mapper.TeacherMapper;
+import com.ljs.game.pojo.dto.ExcelStudentDTO;
+import com.ljs.game.pojo.dto.ExcelTeacherDTO;
+import com.ljs.game.pojo.entity.Student;
 import com.ljs.game.pojo.entity.Teacher;
 import com.ljs.game.pojo.query.TeacherQuery;
 import com.ljs.game.service.TeacherService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -27,6 +32,19 @@ public class TeacherServiceImpl implements TeacherService {
         List<Teacher> list = teacherMapper.list(teacherQuery);
         PageInfo<Teacher> pageInfo = new PageInfo<>(list);
         return pageInfo;
+    }
+
+    @Override
+    public List listByDown(Integer pageNum, Integer pageSize, TeacherQuery teacherQuery) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<Teacher> list = teacherMapper.list(teacherQuery);
+        ArrayList<ExcelTeacherDTO> teaList = new ArrayList<>(list.size());
+        for (Teacher item : list) {
+            ExcelTeacherDTO excelTeacherDTO = new ExcelTeacherDTO();
+            BeanUtils.copyProperties(item, excelTeacherDTO);
+            teaList.add(excelTeacherDTO);
+        }
+        return teaList;
     }
 
     @Override
@@ -57,4 +75,6 @@ public class TeacherServiceImpl implements TeacherService {
         int count = teacherMapper.update(teacher);
         return count;
     }
+
+
 }

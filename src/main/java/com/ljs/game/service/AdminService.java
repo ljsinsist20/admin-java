@@ -8,5 +8,5 @@ public interface AdminService {
 
     int add(Admin admin);
 
-    int delete(Integer id);
+    int delete(Integer id, String role);
 }
