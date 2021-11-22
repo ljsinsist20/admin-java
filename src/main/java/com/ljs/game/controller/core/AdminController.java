@@ -5,9 +5,7 @@ import com.ljs.game.pojo.entity.Admin;
 import com.ljs.game.result.R;
 import com.ljs.game.service.AdminService;
 import org.springframework.web.bind.annotation.*;
-
 import javax.annotation.Resource;
-import java.util.List;
 
 @RestController
 @RequestMapping("/core/admin")
