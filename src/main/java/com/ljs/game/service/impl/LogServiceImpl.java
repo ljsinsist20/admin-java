@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.ljs.game.mapper.LogMapper;
 import com.ljs.game.pojo.entity.Log;
+import com.ljs.game.pojo.query.LogQuery;
 import com.ljs.game.service.LogService;
 import org.springframework.stereotype.Service;
 
@@ -18,9 +19,9 @@ public class LogServiceImpl implements LogService {
 
 
     @Override
-    public PageInfo list(Integer pageNum, Integer pageSize) {
+    public PageInfo list(Integer pageNum, Integer pageSize, LogQuery logQuery) {
         PageHelper.startPage(pageNum, pageSize);
-        List<Log> list = logMapper.list();
+        List<Log> list = logMapper.list(logQuery);
         PageInfo<Log> pageInfo = new PageInfo<>(list);
         return pageInfo;
     }
