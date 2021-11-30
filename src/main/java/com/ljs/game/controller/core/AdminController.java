@@ -26,6 +26,9 @@ public class AdminController {
         if (count == 1) {
             return R.ok().message("添加成功");
         }
+        if (count == -1) {
+            return R.error().message("用户已存在");
+        }
         return R.error().message("添加失败");
     }
 

@@ -12,4 +12,6 @@ public class Admin {
 
     private String role;
 
+    private Integer state;
+
 }

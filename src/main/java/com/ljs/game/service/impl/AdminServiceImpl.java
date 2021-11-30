@@ -26,6 +26,10 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public int add(Admin admin) {
+        int i = adminMapper.findByName(admin.getUserName());
+        if (i == 1) {
+            return -1;
+        }
         int count = adminMapper.add(admin.getUserName(),MD5.create().digestHex(admin.getPassWord()), admin.getRole());
         return count;
     }
