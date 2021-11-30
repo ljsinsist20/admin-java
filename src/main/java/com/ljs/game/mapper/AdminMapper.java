@@ -20,5 +20,11 @@ public interface AdminMapper {
     int findByAdmin();
 
     @Select(" SELECT COUNT(*) FROM admin WHERE user_name = #{userName} ")
-    int findByName(String userName);
+    int findByName(@Param("userName")String userName);
+
+    @Update(" UPDATE admin SET state = 1 WHERE user_name = #{userName} ")
+    void updateState(@Param("userName")String userName);
+
+    @Update(" UPDATE admin SET state = 0 WHERE id = #{id} ")
+    int updateStateById(Integer id);
 }

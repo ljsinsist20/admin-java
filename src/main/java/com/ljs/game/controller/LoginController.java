@@ -38,6 +38,7 @@ public class LoginController {
             a++;
             redisTemplate.opsForValue().set(admin.getUserName(), a, 30, TimeUnit.MINUTES);
         } else {
+            loginService.updateState(admin.getUserName());
             return R.error().message("当前用户锁定");
         }
         return R.error().message("用户名或密码错误");

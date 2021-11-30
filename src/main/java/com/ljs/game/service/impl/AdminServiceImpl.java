@@ -16,6 +16,7 @@ public class AdminServiceImpl implements AdminService {
     @Resource
     private AdminMapper adminMapper;
 
+
     @Override
     public PageInfo list(Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum, pageSize);
@@ -43,6 +44,12 @@ public class AdminServiceImpl implements AdminService {
             }
         }
         int count = adminMapper.delete(id);
+        return count;
+    }
+
+    @Override
+    public int updateStateById(Integer id) {
+        int count = adminMapper.updateStateById(id);
         return count;
     }
 }
