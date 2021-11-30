@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.ljs.game.pojo.entity.Teacher;
 import com.ljs.game.pojo.query.TeacherQuery;
 
+import java.io.InputStream;
 import java.util.List;
 
 public interface TeacherService {
@@ -19,4 +20,5 @@ public interface TeacherService {
 
     List listByDown(Integer pageNum, Integer pageSize, TeacherQuery teacherQuery);
 
+    void addExcel(InputStream inputStream);
 }

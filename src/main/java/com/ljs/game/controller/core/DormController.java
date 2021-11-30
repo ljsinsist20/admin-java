@@ -73,8 +73,6 @@ public class DormController {
             //UPLOAD_ERROR(-103, "文件上传错误"),
             throw new BusinessException(ResponseEnum.UPLOAD_ERROR, e);
         }
-
-
     }
 
 }

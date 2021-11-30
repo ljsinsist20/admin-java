@@ -20,7 +20,14 @@ public class SexConverter implements Converter<Integer> {
 
     @Override
     public Integer convertToJavaData(CellData cellData, ExcelContentProperty excelContentProperty, GlobalConfiguration globalConfiguration) throws Exception {
-        return null;
+        String stringValue = cellData.getStringValue();
+        if (stringValue == null) {
+            throw new RuntimeException("性别填写为空");
+        }
+        if ("男".equals(stringValue)) {
+            return 0;
+        }
+        return 1;
     }
 
     @Override

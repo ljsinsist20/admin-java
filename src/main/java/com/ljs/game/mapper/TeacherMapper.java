@@ -1,6 +1,7 @@
 package com.ljs.game.mapper;
 
 import com.ljs.game.mapper.Provider.TeacherProvider;
+import com.ljs.game.pojo.dto.upload.ExcelTeacherUploadDTO;
 import com.ljs.game.pojo.entity.Teacher;
 import com.ljs.game.pojo.query.TeacherQuery;
 import org.apache.ibatis.annotations.*;
@@ -24,4 +25,8 @@ public interface TeacherMapper {
 
     @Update(" UPDATE teacher SET `name` = #{name}, sex = #{sex}, phone = #{phone} WHERE id = #{id} ")
     int update(Teacher teacher);
+
+    @Insert(" INSERT INTO teacher(`name`, sex, phone) VALUES(#{name}, #{sex}, #{phone}) ")
+    void addExcel(ExcelTeacherUploadDTO excelTeacherUploadDTO);
+
 }
