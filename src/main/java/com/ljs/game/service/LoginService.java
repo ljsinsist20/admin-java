@@ -7,4 +7,5 @@ public interface LoginService {
 
     String findRole(String userName);
 
+    void updateState(String userName);
 }

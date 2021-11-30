@@ -1,15 +1,19 @@
 package com.ljs.game.service.impl;
 
+import com.alibaba.excel.EasyExcel;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.ljs.game.listener.ExcelDormUploadDTOListener;
 import com.ljs.game.mapper.DormMapper;
 import com.ljs.game.mapper.StudentMapper;
+import com.ljs.game.pojo.dto.upload.ExcelDormUploadDTO;
 import com.ljs.game.pojo.entity.Dorm;
 import com.ljs.game.pojo.query.DormQuery;
 import com.ljs.game.service.DormService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.io.InputStream;
 import java.util.List;
 
 @Service
@@ -61,5 +65,10 @@ public class DormServiceImpl implements DormService {
         dorm.setId(id);
         int count = dormMapper.update(dorm);
         return count;
+    }
+
+    @Override
+    public void addExcel(InputStream inputStream) {
+        EasyExcel.read(inputStream, ExcelDormUploadDTO.class, new ExcelDormUploadDTOListener(dormMapper)).sheet().doRead();
     }
 }

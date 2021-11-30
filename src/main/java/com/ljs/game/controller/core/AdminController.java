@@ -5,6 +5,7 @@ import com.ljs.game.aop.OperLog;
 import com.ljs.game.pojo.entity.Admin;
 import com.ljs.game.result.R;
 import com.ljs.game.service.AdminService;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
@@ -14,6 +15,9 @@ import javax.annotation.Resource;
 public class AdminController {
     @Resource
     private AdminService adminService;
+
+    @Resource
+    private RedisTemplate redisTemplate;
 
     @GetMapping("/list/{pageNum}/{pageSize}")
     public R list(@PathVariable("pageNum") Integer pageNum, @PathVariable("pageSize") Integer pageSize) {
@@ -27,6 +31,9 @@ public class AdminController {
         int count = adminService.add(admin);
         if (count == 1) {
             return R.ok().message("添加成功");
+        }
+        if (count == -1) {
+            return R.error().message("用户已存在");
         }
         return R.error().message("添加失败");
     }
@@ -42,5 +49,15 @@ public class AdminController {
             return R.error().message("只剩一个[超级管理员]用户无法删除");
         }
         return R.error().message("删除失败");
+    }
+
+    @PutMapping("update/{id}/{userName}")
+    public R update(@PathVariable("id") Integer id, @PathVariable("userName") String userName) {
+        int count = adminService.updateStateById(id);
+        if (count == 1) {
+            redisTemplate.delete(userName);
+            return R.ok().message("解锁成功");
+        }
+        return R.error().message("解锁失败");
     }
 }

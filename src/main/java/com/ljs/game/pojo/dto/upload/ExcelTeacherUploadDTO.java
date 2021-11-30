@@ -1,4 +1,4 @@
-package com.ljs.game.pojo.dto;
+package com.ljs.game.pojo.dto.upload;
 
 import com.alibaba.excel.annotation.ExcelIgnore;
 import com.alibaba.excel.annotation.ExcelProperty;
@@ -6,10 +6,7 @@ import com.ljs.game.easyexcel.SexConverter;
 import lombok.Data;
 
 @Data
-public class ExcelTeacherDTO {
-
-    @ExcelIgnore
-    private Integer id;
+public class ExcelTeacherUploadDTO {
 
     @ExcelProperty(value = "辅导员姓名")
     private String name;

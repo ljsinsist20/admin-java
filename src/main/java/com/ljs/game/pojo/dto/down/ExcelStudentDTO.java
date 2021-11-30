@@ -1,4 +1,4 @@
-package com.ljs.game.pojo.dto;
+package com.ljs.game.pojo.dto.down;
 
 import com.alibaba.excel.annotation.ExcelIgnore;
 import com.alibaba.excel.annotation.ExcelProperty;

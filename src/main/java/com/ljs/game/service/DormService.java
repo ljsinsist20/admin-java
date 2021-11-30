@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.ljs.game.pojo.entity.Dorm;
 import com.ljs.game.pojo.query.DormQuery;
 
+import java.io.InputStream;
 import java.util.List;
 
 public interface DormService {
@@ -17,4 +18,7 @@ public interface DormService {
     int add(Dorm dorm);
 
     int update(Integer id, Dorm dorm);
+
+    void addExcel(InputStream inputStream);
+
 }

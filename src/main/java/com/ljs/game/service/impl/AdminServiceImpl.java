@@ -16,6 +16,7 @@ public class AdminServiceImpl implements AdminService {
     @Resource
     private AdminMapper adminMapper;
 
+
     @Override
     public PageInfo list(Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum, pageSize);
@@ -26,6 +27,10 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public int add(Admin admin) {
+        int i = adminMapper.findByName(admin.getUserName());
+        if (i == 1) {
+            return -1;
+        }
         int count = adminMapper.add(admin.getUserName(),MD5.create().digestHex(admin.getPassWord()), admin.getRole());
         return count;
     }
@@ -39,6 +44,12 @@ public class AdminServiceImpl implements AdminService {
             }
         }
         int count = adminMapper.delete(id);
+        return count;
+    }
+
+    @Override
+    public int updateStateById(Integer id) {
+        int count = adminMapper.updateStateById(id);
         return count;
     }
 }
