@@ -1,6 +1,7 @@
 package com.ljs.game.mapper;
 
 import com.ljs.game.mapper.Provider.DormProvider;
+import com.ljs.game.pojo.dto.upload.ExcelDormUploadDTO;
 import com.ljs.game.pojo.entity.Dorm;
 import com.ljs.game.pojo.query.DormQuery;
 import org.apache.ibatis.annotations.*;
@@ -28,4 +29,6 @@ public interface DormMapper {
     @Update(" update dorm set `name` = #{name} where id = #{id} ")
     int update(Dorm dorm);
 
+    @Insert(" INSERT INTO dorm(`name`) VALUES(#{name}) ")
+    void addExcel(ExcelDormUploadDTO excelDormUploadDTO);
 }

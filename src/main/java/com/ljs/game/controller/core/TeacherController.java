@@ -3,7 +3,7 @@ package com.ljs.game.controller.core;
 import com.alibaba.excel.EasyExcel;
 import com.github.pagehelper.PageInfo;
 import com.ljs.game.exception.BusinessException;
-import com.ljs.game.pojo.dto.ExcelTeacherDTO;
+import com.ljs.game.pojo.dto.down.ExcelTeacherDTO;
 import com.ljs.game.pojo.entity.Teacher;
 import com.ljs.game.pojo.query.TeacherQuery;
 import com.ljs.game.result.R;

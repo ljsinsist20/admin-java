@@ -4,7 +4,7 @@ import com.alibaba.excel.EasyExcel;
 import com.github.pagehelper.PageInfo;
 import com.ljs.game.aop.OperLog;
 import com.ljs.game.exception.BusinessException;
-import com.ljs.game.pojo.dto.ExcelStudentDTO;
+import com.ljs.game.pojo.dto.down.ExcelStudentDTO;
 import com.ljs.game.pojo.query.StudentQuery;
 import com.ljs.game.pojo.vo.StudentVO;
 import com.ljs.game.result.R;

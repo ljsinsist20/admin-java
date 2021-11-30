@@ -3,7 +3,7 @@ package com.ljs.game.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.ljs.game.mapper.StudentMapper;
-import com.ljs.game.pojo.dto.ExcelStudentDTO;
+import com.ljs.game.pojo.dto.down.ExcelStudentDTO;
 import com.ljs.game.pojo.entity.Student;
 import com.ljs.game.pojo.query.StudentQuery;
 import com.ljs.game.pojo.vo.StudentVO;

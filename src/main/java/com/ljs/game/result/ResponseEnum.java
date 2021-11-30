@@ -17,7 +17,9 @@ public enum ResponseEnum {
 
     LOGIN_AUTH_ERROR(-211, "未登录"),
 
-    EXPORT_DATA_ERROR(-212, "excel导出失败");
+    EXPORT_DATA_ERROR(-212, "excel导出失败"),
+
+    UPLOAD_ERROR(-213, "excel导入失败");
 
 
     private Integer code;
