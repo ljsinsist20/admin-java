@@ -1,15 +1,21 @@
 package com.ljs.game.service.impl;
 
+import com.alibaba.excel.EasyExcel;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.ljs.game.listener.ExcelDepartmentUploadDTOListener;
+import com.ljs.game.listener.ExcelDormUploadDTOListener;
 import com.ljs.game.mapper.ClassMapper;
 import com.ljs.game.mapper.DepartmentMapper;
+import com.ljs.game.pojo.dto.upload.ExcelDepartmentUploadDTO;
+import com.ljs.game.pojo.dto.upload.ExcelDormUploadDTO;
 import com.ljs.game.pojo.entity.Department;
 import com.ljs.game.pojo.query.DepartmentQuery;
 import com.ljs.game.service.DepartmentService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.io.InputStream;
 import java.util.List;
 
 @Service
@@ -56,6 +62,11 @@ public class DepartmentServiceImpl implements DepartmentService {
         department.setId(id);
         int count = departmentMapper.update(department);
         return count;
+    }
+
+    @Override
+    public void addExcel(InputStream inputStream) {
+        EasyExcel.read(inputStream, ExcelDepartmentUploadDTO.class, new ExcelDepartmentUploadDTOListener(departmentMapper)).sheet().doRead();
     }
 
 

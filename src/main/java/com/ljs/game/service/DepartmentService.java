@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.ljs.game.pojo.entity.Department;
 import com.ljs.game.pojo.query.DepartmentQuery;
 
+import java.io.InputStream;
 import java.util.List;
 
 public interface DepartmentService {
@@ -16,4 +17,6 @@ public interface DepartmentService {
     int add(Department department);
 
     int update(Integer id, Department department);
+
+    void addExcel(InputStream inputStream);
 }

@@ -98,10 +98,10 @@ public class TeacherController {
         try {
             InputStream inputStream = file.getInputStream();
             teacherService.addExcel(inputStream);
+            return R.ok().message("批量导入成功");
         }catch (Exception e){
             //UPLOAD_ERROR(-103, "文件上传错误"),
             throw new BusinessException(ResponseEnum.UPLOAD_ERROR, e);
         }
-        return R.ok().message("批量导入成功");
     }
 }

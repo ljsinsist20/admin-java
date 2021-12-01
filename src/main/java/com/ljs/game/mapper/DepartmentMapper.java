@@ -1,6 +1,7 @@
 package com.ljs.game.mapper;
 
 import com.ljs.game.mapper.Provider.DepartmentProvider;
+import com.ljs.game.pojo.dto.upload.ExcelDepartmentUploadDTO;
 import com.ljs.game.pojo.entity.Department;
 import com.ljs.game.pojo.query.DepartmentQuery;
 import org.apache.ibatis.annotations.*;
@@ -25,4 +26,8 @@ public interface DepartmentMapper {
 
     @Update(" update department set `name` = #{name} where id = #{id} ")
     int update(Department department);
+
+    @Insert(" INSERT INTO department(`name`) VALUES(#{name}) ")
+    void addExcel(ExcelDepartmentUploadDTO excelDepartmentUploadDTO);
+
 }
