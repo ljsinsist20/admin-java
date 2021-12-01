@@ -1,9 +1,14 @@
 package com.ljs.game.service.impl;
 
+import com.alibaba.excel.EasyExcel;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.ljs.game.listener.ExcelStudentUploadDTOListener;
+import com.ljs.game.listener.ExcelTeacherUploadDTOListener;
 import com.ljs.game.mapper.StudentMapper;
 import com.ljs.game.pojo.dto.down.ExcelStudentDTO;
+import com.ljs.game.pojo.dto.upload.ExcelStudentUploadDTO;
+import com.ljs.game.pojo.dto.upload.ExcelTeacherUploadDTO;
 import com.ljs.game.pojo.entity.Student;
 import com.ljs.game.pojo.query.StudentQuery;
 import com.ljs.game.pojo.vo.StudentVO;
@@ -12,6 +17,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,5 +68,8 @@ public class StudentServiceImpl implements StudentService {
         return count;
     }
 
-
+    @Override
+    public void addExcel(InputStream inputStream) {
+        EasyExcel.read(inputStream, ExcelStudentUploadDTO.class, new ExcelStudentUploadDTOListener(studentMapper)).sheet().doRead();
+    }
 }

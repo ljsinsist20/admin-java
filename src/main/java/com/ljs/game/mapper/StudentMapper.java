@@ -1,6 +1,7 @@
 package com.ljs.game.mapper;
 
 import com.ljs.game.mapper.Provider.StudentProvider;
+import com.ljs.game.pojo.dto.upload.ExcelStudentUploadDTO;
 import com.ljs.game.pojo.entity.Student;
 import com.ljs.game.pojo.query.StudentQuery;
 import com.ljs.game.pojo.vo.StudentVO;
@@ -39,4 +40,14 @@ public interface StudentMapper {
             " WHERE id = #{id} ")
     int update(StudentVO studentVO);
 
+    @Insert(" INSERT INTO student(name, sex, phone, did, cid) " +
+            " VALUES(#{name}, #{sex}, #{phone}, #{did}, #{cid}) ")
+    void addExcel(ExcelStudentUploadDTO excelStudentUploadDTO);
+
+    //其他表
+    @Select(" SELECT id FROM class WHERE `name` = #{className} ")
+    Integer findByClassName(String className);
+
+    @Select(" SELECT id FROM dorm WHERE `name` = #{dormName} ")
+    Integer findByDormName(String dormName);
 }

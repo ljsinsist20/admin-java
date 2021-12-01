@@ -11,8 +11,11 @@ import com.ljs.game.result.R;
 import com.ljs.game.result.ResponseEnum;
 import com.ljs.game.service.StudentService;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
+import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
 @RestController
@@ -93,5 +96,17 @@ public class StudentController {
             return R.ok().message("更新成功");
         }
         return R.error().message("更新失败");
+    }
+
+    @PostMapping("/addExcel")
+    public R addExcel(@RequestParam("file") MultipartFile file) {
+        try {
+            InputStream inputStream = file.getInputStream();
+            studentService.addExcel(inputStream);
+            return R.ok().message("批量导入成功");
+        }catch (Exception e){
+            //UPLOAD_ERROR(-103, "文件上传错误"),
+            throw new BusinessException(ResponseEnum.UPLOAD_ERROR, e);
+        }
     }
 }
