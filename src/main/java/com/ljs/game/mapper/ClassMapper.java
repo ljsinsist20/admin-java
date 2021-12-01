@@ -1,6 +1,7 @@
 package com.ljs.game.mapper;
 
 import com.ljs.game.mapper.Provider.ClassProvider;
+import com.ljs.game.pojo.dto.upload.ExcelClassUploadDTO;
 import com.ljs.game.pojo.entity.Class;
 import com.ljs.game.pojo.query.ClassQuery;
 import org.apache.ibatis.annotations.*;
@@ -30,4 +31,16 @@ public interface ClassMapper {
 
     @Select(" select count(*) from class where deid = #{deid}  ")
     int findByDeid(@Param("deid") Integer deid);
+
+    @Insert(" INSERT INTO class(`name`, deid, tid) VALUES(#{name}, #{deid}, #{tid}) ")
+    void addExcel(ExcelClassUploadDTO excelClassUploadDTO);
+
+
+    //其他表
+    @Select(" SELECT id FROM teacher WHERE `name` = #{teacherName} ")
+    Integer findByTeacheraName(String teacherName);
+
+    @Select(" SELECT id FROM department WHERE `name` = #{departmentName} ")
+    Integer findByDepartmentName(String departmentName);
+
 }

@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.ljs.game.pojo.entity.Class;
 import com.ljs.game.pojo.query.ClassQuery;
 
+import java.io.InputStream;
 import java.util.List;
 
 public interface ClassService {
@@ -16,4 +17,6 @@ public interface ClassService {
     int add(Class aClass);
 
     int update(Integer id, Class aClass);
+
+    void addExcel(InputStream inputStream);
 }

@@ -1,15 +1,21 @@
 package com.ljs.game.service.impl;
 
+import com.alibaba.excel.EasyExcel;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.ljs.game.listener.ExcelCLassUploadDTOListener;
+import com.ljs.game.listener.ExcelDormUploadDTOListener;
 import com.ljs.game.mapper.ClassMapper;
 import com.ljs.game.mapper.StudentMapper;
+import com.ljs.game.pojo.dto.upload.ExcelClassUploadDTO;
+import com.ljs.game.pojo.dto.upload.ExcelDormUploadDTO;
 import com.ljs.game.pojo.entity.Class;
 import com.ljs.game.pojo.query.ClassQuery;
 import com.ljs.game.service.ClassService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.io.InputStream;
 import java.util.List;
 
 @Service
@@ -61,5 +67,10 @@ public class ClassServiceImpl implements ClassService {
         aClass.setId(id);
         int count = classMapper.update(aClass);
         return count;
+    }
+
+    @Override
+    public void addExcel(InputStream inputStream) {
+        EasyExcel.read(inputStream, ExcelClassUploadDTO.class, new ExcelCLassUploadDTOListener(classMapper)).sheet().doRead();
     }
 }
