@@ -25,6 +25,9 @@ public class LoginController {
     @PostMapping("/login")
     public R login(@RequestBody Admin admin) {
         Admin adminFlag = loginService.login(admin.getUserName(), admin.getPassWord());
+        if (adminFlag.getState() == 1) {
+            return R.error().message("当前用户已经锁定");
+        }
         if (adminFlag != null) {
             String token = JwtUtils.createToken(adminFlag.getId(), adminFlag.getUserName());
             return R.ok().data("token", token);
